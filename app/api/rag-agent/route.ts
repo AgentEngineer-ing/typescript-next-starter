@@ -1,4 +1,4 @@
-import { RAG_SYSTEM_INSTRUCTIONS } from "@/components/agent/rag-prompt";
+import { RAG_SYSTEM_INSTRUCTIONS } from "@/components/agent/prompts/rag-prompt";
 import { retrieveKnowledgeBaseSimple } from "@/components/agent/tools";
 import { openai } from "@ai-sdk/openai";
 import { streamText, convertToModelMessages, stepCountIs } from "ai";

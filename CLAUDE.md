@@ -36,10 +36,12 @@ This is a TypeScript Next.js 15 starter template for AI-powered applications wit
 - `app/api/rag-agent/` - RAG-enabled agent endpoint with knowledge base access
 - `components/chat/` - Chat interface components
 - `components/ai-elements/` - Vercel AI Elements components
-- `components/agent/` - Agent configuration (system prompts)
-  - `prompt.ts` - Default travel agent system prompt
-  - `rag-prompt.ts` - RAG agent system prompt for Catan and Peruvian restaurant
-- `components/agent/tools/` - AI SDK tools for agent capabilities (knowledge base retrieval, etc.)
+- `components/agent/` - Agent configuration and tools
+  - `prompts/` - System prompts for different agent types
+    - `prompt.ts` - Default travel agent system prompt
+    - `rag-prompt.ts` - RAG agent system prompt for Catan and Peruvian restaurant
+    - `web-scraper-prompt.ts` - Web scraping agent system prompt
+  - `tools/` - AI SDK tools for agent capabilities (knowledge base retrieval, etc.)
 - `components/ui/` - shadcn/ui components
 - `lib/retrieval/` - Vectorize RAG service for document retrieval
 - `lib/utils.ts` - Utility functions including `cn()` for className merging
@@ -50,7 +52,7 @@ This is a TypeScript Next.js 15 starter template for AI-powered applications wit
 - Uses AI SDK 5's `streamText()` for streaming responses
 - Configured for GPT-5 via OpenAI provider with web search tool enabled
 - Vectorize RAG integration via `VectorizeService` in `/lib/retrieval/`
-- System instructions defined in `components/agent/prompt.ts` (travel agent theme)
+- System instructions defined in `components/agent/prompts/` (organized by agent type)
 - API route at `/api/chat` expects `{ messages: Array }` and returns streaming text
 - RAG-enabled agent at `/api/rag-agent` includes `retrieveKnowledgeBase` tool for knowledge base access
 - use useChat for all streaming handling (read the doc first, always, before writing any streaming code: https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat)
@@ -254,7 +256,7 @@ When creating new tools:
 
 When creating new agents:
 1. Follow the pattern established in `/app/api/rag-agent/route.ts`
-2. Create new prompts in `/components/agent/` following the structure of `prompt.ts` and `rag-prompt.ts`
+2. Create new prompts in `/components/agent/prompts/` following the structure of existing prompt files
 3. Use the same streaming patterns and error handling as existing agents
 4. Always include proper tool configurations and import from `/components/agent/tools`
 
